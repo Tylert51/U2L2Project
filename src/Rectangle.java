@@ -70,6 +70,13 @@
             return area;
         }
 
+        // Calculates and returns the perimeter of the Rectangle
+        public int calculatePerimeter()
+        {
+            int perimeter = (2*width)+(2*length);
+            return perimeter;
+        }
+
         // Prints the Rectangle's dimensions
         public void printRectangleInfo()
         {
