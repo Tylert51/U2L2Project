@@ -1,27 +1,27 @@
+import java.util.Scanner;
 public class U2L2Runner {
     public static void main(String[] args) {
-        Rectangle r1 = new Rectangle(150, 200);
-        Rectangle r2Sq = new Rectangle(100);
-        Rectangle r3Def = new Rectangle();
-// changing widths
-        r1.setWidth(125);
-        r2Sq.setWidth(125);
-        r2Sq.setLength(125);
-        r3Def.setWidth(125);
-// calculating perimeters
-        int r1Perimeter = r1.calculatePerimeter();
-        int r2Perimeter = r2Sq.calculatePerimeter();
-        int r3Perimeter = r3Def.calculatePerimeter();
-        int totalPerimeter = r1Perimeter + r2Perimeter + r3Perimeter;
-// calculating areas
-        int r1Area = r1.calculateArea();
-        int r2Area = r2Sq.calculateArea();
-        int r3Area = r3Def.calculateArea();
-        int totalArea = r1Area + r2Area + r3Area;
+        // User input
+        Scanner s = new Scanner(System.in);
+        System.out.println("How many pieces of lumber do you need for the house you are building?");
+        int numLumber = s.nextInt();
+        System.out.println("How many windows do you need?");
+        int numWindows = s.nextInt();
+        System.out.println("What is the tax rate for your area (in decimal form)?");
+        double taxRate = s.nextDouble();
 
-        System.out.println("You will need " + totalPerimeter + " feet in fencing to enclose all three plots of land and " + totalArea + " square feet of seeding.");
+        // Pricing for materials
+        ConstructionPricer currentPrice = new ConstructionPricer(11.50, 25.75, taxRate);
+        // Calculating
+        double priceNoTax = currentPrice.materialsCost(numLumber,numWindows);
+        double priceWithTax = currentPrice.totalWithTax(priceNoTax);
+        // output
+        System.out.println("Total Materials Cost: $" + round(priceNoTax));
+        System.out.println("Grand Total after Tax: $" + round(priceWithTax));
 
-
+    }
+    public static String round(double num) {
+        return String.format("%.2f", num);
 
     }
 }
